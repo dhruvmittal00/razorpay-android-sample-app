@@ -33,7 +33,7 @@ public class PaymentActivity extends Activity implements PaymentResultWithDataLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_payment_legacy);
 
         /*
          To ensure faster loading of the Checkout form,

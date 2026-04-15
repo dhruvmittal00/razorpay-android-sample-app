@@ -1,155 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#02042b"
-    >
-<RelativeLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:background="#F7F8F9"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <RelativeLayout
+        <!-- Header Card -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="110dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:elevation="2dp"
+            android:backgroundTint="#FFFFFF"
+            app:cardCornerRadius="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_alignParentBottom="true"
-                android:background="#E2E2E2"
-                android:gravity="center">
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_rzp_logo"
+                    android:layout_width="120dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Razorpay Logo" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="35dp"
-                    android:paddingBottom="0dp"
-                    android:text="Order #RZP42"
+                    android:layout_marginTop="8dp"
+                    android:text="DuitNow Pay"
+                    android:textColor="#1B2533"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="App-to-App Payment Test"
+                    android:textColor="#5F6D7E"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Amount Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:elevation="2dp"
+            android:backgroundTint="#FFFFFF"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Amount"
+                    android:textColor="#5F6D7E"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <!-- Amount input with inline MYR -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/input_field_bg">
+
+                    <EditText
+                        android:id="@+id/et_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="1.00"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="52dp"
+                        android:text="1.00"
+                        android:textColor="#1B2533"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="14dp"
+                        android:text="MYR"
+                        android:textColor="#8B95A2"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Minimum: MYR 0.10 (10 cents)"
+                    android:textColor="#8B95A2"
                     android:textSize="12sp" />
 
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
-                android:background="#FFFFFF"
-                android:src="@drawable/rzp" />
-
-        </RelativeLayout>
-
-        <LinearLayout
+        <!-- Payment Method Card (CIMB) -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#f2f2f2"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="15dp">
+            android:layout_marginBottom="12dp"
+            android:elevation="2dp"
+            android:backgroundTint="#FFFFFF"
+            app:cardCornerRadius="12dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="0dp"
-                android:paddingBottom="5dp"
-                android:text="Razorpay T-Shirt"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="0dp"
-                android:paddingBottom="0dp"
-                android:text="INR 1.00"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="0dp"
-                android:text="Transaction is for testing purpose and your deducted amount will get refunded in 3-5 business days "
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="12sp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/txt_privacy_policy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="0dp"
-                android:text="Privacy Policy"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="12sp"
-                android:textStyle="italic" />
-
-            <EditText
-                android:id="@+id/et_api_key"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="API Key"
-                android:layout_margin="5dp"
-                />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <EditText
-                android:id="@+id/et_custom_options"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Custom Options"
-                android:lines="10"
-                android:layout_margin="5dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pay Using"
+                    android:textColor="#5F6D7E"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btn_pay"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/green_button"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Purchase"
-                android:textColor="#fcfcfc"
-                android:textSize="14sp" />
+                <!-- CIMB Button -->
+                <LinearLayout
+                    android:id="@+id/btn_cimb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/cimb_button_bg"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
-        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_cimb_logo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="#F5F5F5"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="CIMB Logo" />
 
-        <TextView
-            android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CIMB Bank"
+                            android:textColor="#1B2533"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DuitNow Pay  \u2022  App-to-App"
+                            android:textColor="#5F6D7E"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progress_loading"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:indeterminateTint="#0D6FFF"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\u203A"
+                        android:textColor="#8B95A2"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Status Card (hidden initially) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_status"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/secured_by_bg"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="10dp"
-            android:text="Secure Payments by Razorpay"
-            android:textColor="#a1ddee"
-            android:textSize="12sp"
-            android:textStyle="italic" />
+            android:layout_marginBottom="12dp"
+            android:elevation="2dp"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title row with dot indicator -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/status_dot"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/status_dot" />
+
+                    <TextView
+                        android:id="@+id/tv_status_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_status_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_status_log"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="monospace"
+                    android:textColor="#8B95A2"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Result Card (hidden initially) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:elevation="2dp"
+            android:backgroundTint="#FFFFFF"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:id="@+id/result_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- New Payment Button (hidden initially) -->
+        <Button
+            android:id="@+id/btn_new_payment"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/input_field_bg"
+            android:backgroundTint="#0D6FFF"
+            android:text="New Payment"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <!-- Environment Info Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:elevation="0dp"
+            android:backgroundTint="#F7F8F9"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:id="@+id/env_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp" />
+
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
-</RelativeLayout>
 </ScrollView>
