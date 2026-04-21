@@ -522,21 +522,48 @@ class PaymentActivity : Activity() {
     }
 
     /**
-     * Transform CIMB web URL → app deep link
-     * Per Paynet A2A Framework Section 4.2:
-     * Replace https://uat3.cimbclicks.com.my/dobb2c/ → novuscimboctouat://
+     * Transform CIMB web URL → app deep link.
+     * Parses the Paynet-generated URL (host/path vary: uat2/clicks vs uat3/dobb2c),
+     * extracts DbtrAgt / EndtoEndId / EndtoEndIdSignature from either the query
+     * string or the fragment, and rebuilds a canonical:
+     *   novuscimboctouat://RPP/MY/Redirect/RTP?<params>&Callback=<encoded>
      */
     private fun transformToAppDeepLink(webUrl: String): String {
-        var appUrl = webUrl.replace(
-            "https://uat3.cimbclicks.com.my/dobb2c/",
-            "novuscimboctouat://"
-        )
-        if (!appUrl.contains("Callback=")) {
-            val separator = if (appUrl.contains("?")) "&" else "?"
-            val callback = Uri.encode("rzpcurlectestapp://payment/callback")
-            appUrl += "${separator}Callback=$callback"
+        val uri = Uri.parse(webUrl)
+        val params = linkedMapOf<String, String>()
+
+        // 1. Collect params from the query string.
+        for (name in uri.queryParameterNames) {
+            uri.getQueryParameter(name)?.let { params[name] = it }
         }
-        return appUrl
+
+        // 2. Collect params from the fragment (format: "//RPP/MY/Redirect/RTP?k=v&...").
+        uri.fragment?.let { frag ->
+            val qIdx = frag.indexOf('?')
+            if (qIdx >= 0 && qIdx < frag.length - 1) {
+                for (pair in frag.substring(qIdx + 1).split("&")) {
+                    val eq = pair.indexOf('=')
+                    if (eq > 0) {
+                        val k = Uri.decode(pair.substring(0, eq))
+                        val v = Uri.decode(pair.substring(eq + 1))
+                        if (!params.containsKey(k)) params[k] = v
+                    }
+                }
+            }
+        }
+
+        // 3. Always attach our return callback.
+        params["Callback"] = "rzpcurlectestapp://payment/callback"
+
+        // 4. Build the canonical OCTO deep link.
+        val sb = StringBuilder("novuscimboctouat://RPP/MY/Redirect/RTP")
+        var first = true
+        for ((k, v) in params) {
+            sb.append(if (first) '?' else '&')
+            sb.append(Uri.encode(k)).append('=').append(Uri.encode(v))
+            first = false
+        }
+        return sb.toString()
     }
 
     // MARK: - Deep Link Callback Handling
